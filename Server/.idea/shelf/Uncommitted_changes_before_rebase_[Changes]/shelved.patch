@@ -1,0 +1,17 @@
+Index: src/main/java/com/thecodehouse/nutrimoo/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/thecodehouse/nutrimoo/Main.java b/src/main/java/com/thecodehouse/nutrimoo/Main.java
+new file mode 100644
+--- /dev/null	(date 1696693596802)
++++ b/src/main/java/com/thecodehouse/nutrimoo/Main.java	(date 1696693596802)
+@@ -0,0 +1,7 @@
++package main.java.com.thecodehouse.nutrimoo;
++
++public class Main {
++    public static void main(String[] args){
++
++    }
++}
