@@ -62,7 +62,7 @@ public class Client{
 
   do{
 
-    System.out.print ("Digite o peso do gado");
+    System.out.print ("Digite o peso do gado:  ");
 
     try{
       try {
@@ -73,12 +73,25 @@ public class Client{
       }
       
       server.send(new EmRequest(option));
+
+      server.send(new EmResponse());
+      Message message = null;
+
+      do{
+        message = (Message)server.peek();
+      }while(!(message instanceof Result));
+      
+      Result result = (Result)server.receive();
+      System.out.println("Resultado atual: "+result.getResult()+"\n");
+
+
     }catch(Exception e){
       System.err.println ("Erro de comunicacao com o servidor;");
 			System.err.println ("Tente novamente!");
 			System.err.println ("Caso o erro persista, termine o programa");
 			System.err.println ("e volte a tentar mais tarde!\n");    
     }
+
   }while (option != -1);
   try{
 		server.send (new ExitRequest ());

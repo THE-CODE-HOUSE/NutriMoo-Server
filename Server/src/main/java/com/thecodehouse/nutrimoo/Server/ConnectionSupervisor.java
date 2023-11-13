@@ -58,6 +58,8 @@ public class ConnectionSupervisor extends Thread{
                     Double weight = emRequest.getWeight();
                     Double PM = Math.pow(weight,0.75);
                     this.EM = NEm * PM;
+                    
+                    
                 }
                 else if (message instanceof EmResponse){
                     this.user.send(new Result (this.EM));

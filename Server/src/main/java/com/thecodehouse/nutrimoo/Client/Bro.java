@@ -8,22 +8,27 @@ public class Bro {
   private Socket connection;
   private ObjectInputStream receptor;
   private ObjectOutputStream transmissor;
-  private Message NextMessage = null;
+  private Message nextMessage = null;
   private Semaphore mutEx = new Semaphore(1,true);
+
+
   public Bro(Socket connection, ObjectInputStream receptor, ObjectOutputStream transmissor) throws Exception {
     if(connection ==null) throw new Exception("Conexao ausente");
     if(receptor ==null) throw new Exception("Receptor ausente");
     if(transmissor == null) throw new Exception("Transmissor ausente");
     this.connection = connection;
-    this.transmissor = transmissor;
     this.receptor = receptor;
+    this.transmissor = transmissor;
+    
   }
 
 
   public void send(Message x) throws Exception {
     try{
+      
       this.transmissor.writeObject(x);
       this.transmissor.flush();
+      
     }catch(IOException e){
       throw new Exception("Erro de transmissao");
     }
@@ -32,9 +37,9 @@ public class Bro {
   public Message peek() throws Exception {
     try{
       this.mutEx.acquireUninterruptibly();
-      if(this.NextMessage == null) this.NextMessage = (Message) this.receptor.readObject();
+      if(this.nextMessage == null) this.nextMessage = (Message) this.receptor.readObject();
       this.mutEx.release();
-      return this.NextMessage;
+      return this.nextMessage;
     }catch(Exception e){
       throw new Exception("Erro de recepção");
     }
@@ -42,9 +47,9 @@ public class Bro {
   }
   public Message receive()throws Exception {
     try{
-      if(this.NextMessage == null)this.NextMessage = (Message)this.receptor.readObject();
-      Message ret = this.NextMessage;
-      this.NextMessage = null;
+      if(this.nextMessage == null)this.nextMessage = (Message)this.receptor.readObject();
+      Message ret = this.nextMessage;
+      this.nextMessage = null;
       return ret;
     }catch(Exception e){
       throw new Exception("Erro de recepcao");
