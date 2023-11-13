@@ -1,4 +1,4 @@
-package main.java.com.thecodehouse.nutrimoo.Client;
+// package main.java.com.thecodehouse.nutrimoo.Client;
 import java.net.*;
 
 public class DisconnectionMessageHandler extends Thread {

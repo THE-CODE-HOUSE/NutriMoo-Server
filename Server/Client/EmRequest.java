@@ -1,4 +1,4 @@
-package main.java.com.thecodehouse.nutrimoo.Server;
+// package main.java.com.thecodehouse.nutrimoo.Client;
 
 public class EmRequest extends Message{
     private double weight;

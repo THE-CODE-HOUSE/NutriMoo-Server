@@ -1,4 +1,4 @@
-package main.java.com.thecodehouse.nutrimoo.Server;
+// package main.java.com.thecodehouse.nutrimoo.Server;
 
 public class Result extends Message{
     private double result;

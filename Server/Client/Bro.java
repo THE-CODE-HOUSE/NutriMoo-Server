@@ -1,21 +1,27 @@
-package main.java.com.thecodehouse.nutrimoo.Client;
+//package main.java.com.thecodehouse.nutrimoo.Client;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
 public class Bro {
+
   private Socket connection;
   private ObjectInputStream receptor;
   private ObjectOutputStream transmissor;
+
   private Message nextMessage = null;
+
   private Semaphore mutEx = new Semaphore(1,true);
 
 
   public Bro(Socket connection, ObjectInputStream receptor, ObjectOutputStream transmissor) throws Exception {
+
     if(connection ==null) throw new Exception("Conexao ausente");
     if(receptor ==null) throw new Exception("Receptor ausente");
     if(transmissor == null) throw new Exception("Transmissor ausente");
+    
     this.connection = connection;
     this.receptor = receptor;
     this.transmissor = transmissor;
@@ -55,7 +61,7 @@ public class Bro {
       throw new Exception("Erro de recepcao");
     }
   }
-  public void goodbye() throws Exception{
+  public void goodBye() throws Exception{
     try{
       this.transmissor.close();
       this.receptor   .close();

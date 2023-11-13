@@ -1,4 +1,4 @@
-package main.java.com.thecodehouse.nutrimoo.Server;
+// package main.java.com.thecodehouse.nutrimoo.Server;
 
 import java.io.*;
 import java.net.*;
@@ -20,7 +20,7 @@ public class ConnectionSupervisor extends Thread{
 
     public void run (){
         
-        ObjectOutputStream transmissor;
+        ObjectOutputStream transmissor = null;
 
         try{
             transmissor = new ObjectOutputStream(this.connection.getOutputStream());

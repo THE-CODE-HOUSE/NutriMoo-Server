@@ -1,4 +1,4 @@
-package main.java.com.thecodehouse.nutrimoo.Client;
+// package main.java.com.thecodehouse.nutrimoo.Client;
 import java.net.*;
 import java.io.*;
  
@@ -64,15 +64,23 @@ public class Client{
 
     System.out.print ("Digite o peso do gado:  ");
 
+    
+    try {
+      option = Teclado.getUmDouble();
+    } catch (Exception e) {
+      System.err.println("Opção invalida\n");
+      continue;
+    }
     try{
-      try {
-        option = Teclado.getUmDouble();
-      } catch (Exception e) {
-        System.err.println("Opção invalida\n");
-        continue;
-      }
-      
       server.send(new EmRequest(option));
+    }catch(Exception e){
+      System.err.println ("Erro de comunicacao com o servidor;");
+			System.err.println ("Tente novamente!");
+			System.err.println ("Caso o erro persista, termine o programa");
+			System.err.println ("e volte a tentar mais tarde!\n");    
+    }
+    
+    try{
 
       server.send(new EmResponse());
       Message message = null;
