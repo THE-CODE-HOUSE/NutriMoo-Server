@@ -79,7 +79,7 @@ public class Client{
 			System.err.println ("Caso o erro persista, termine o programa");
 			System.err.println ("e volte a tentar mais tarde!\n");    
     }
-    
+    if(option ==-1) break;
     try{
 
       server.send(new EmResponse());
