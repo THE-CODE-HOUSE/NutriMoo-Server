@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.*;
 
 public class ConnectionSupervisor extends Thread{
-    private double EM=0;
+    private double CMS=0;
     private Bro user;
     private Socket connection;
     private ArrayList<Bro> users;
@@ -50,19 +50,30 @@ public class ConnectionSupervisor extends Thread{
 
             for(;;){
                 Message message = this.user.receive();
-                Double NEm = 0.077;
-
                 if(message==null) return;
                 else if (message instanceof EmRequest){
                     EmRequest emRequest = (EmRequest) message;
                     Double weight = emRequest.getWeight();
-                    Double PM = Math.pow(weight,0.75);
-                    this.EM = NEm * PM;
-                    
-                    
+                    switch (emRequest.getStage()){
+                        case "VACA":
+                        this.CMS = weight*0.025;
+                        break;
+                        
+                        case "VACA EM LACTACAO":
+                        this.CMS = weight*0.035;
+                        break;
+
+                        case "BEZERRA/NOVILHA":
+                        this.CMS = weight*0.02;
+                        break;
+
+                        default:
+                        this.CMS = weight*0.03;
+                        break;
+                    }
                 }
                 else if (message instanceof EmResponse){
-                    this.user.send(new Result (this.EM));
+                    this.user.send(new EmResponse(this.CMS));
                 }
                 else if (message instanceof RequestToLeave){
                     synchronized(this.users){

@@ -23,14 +23,23 @@ public class Bro {
         this.transmissor = transmissor;
     }
 
-    public void send (Message x) throws Exception{
-        try{
-            this.transmissor.writeObject(x);
+    public void send(Message x) throws Exception {
+        try {
+            if (x instanceof EmResponse) {
+                // Se a mensagem for do tipo EmResponse, envia apenas o valor double
+                EmResponse emResponse = (EmResponse) x;
+                this.transmissor.writeDouble(emResponse.getCMS());
+            } else {
+                // Se a mensagem não for do tipo EmResponse, envia a mensagem completa
+                this.transmissor.writeObject(x);
+            }
+    
             this.transmissor.flush();
-        }catch(IOException e){
+        } catch (IOException e) {
             throw new Exception("Erro de transmissao");
         }
     }
+    
     
     public Message peek() throws Exception{
         try{
