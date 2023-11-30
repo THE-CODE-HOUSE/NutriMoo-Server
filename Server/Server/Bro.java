@@ -15,8 +15,8 @@ public class Bro {
 
     public Bro(Socket connection, ObjectInputStream receptor, ObjectOutputStream transmissor) throws Exception{
         if(connection==null) throw new Exception("Conexao ausente");
-        if (receptor==null) throw new Exception ("Receptor ausente");
-        if (transmissor==null) throw new Exception ("Transmissor ausente");
+        if(receptor==null) throw new Exception ("Receptor ausente");
+        if(transmissor==null) throw new Exception ("Transmissor ausente");
 
         this.connection = connection;
         this.receptor = receptor;
@@ -27,7 +27,7 @@ public class Bro {
         try{
             this.transmissor.writeObject(x);
             this.transmissor.flush();
-        }catch(IOException e){
+        }catch(Exception e){
             throw new Exception("Erro de transmissao");
         }
     }

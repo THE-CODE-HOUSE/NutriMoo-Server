@@ -49,17 +49,19 @@ public class ConnectionSupervisor extends Thread{
             }
 
             for(;;){
-                Message message = this.user.receive();
-                Double NEm = 0.077;
-
+                Message message = null;
+                try{
+                    message = this.user.receive();
+                }catch(Exception e){}
+                Double NEm = 0.120;
+                
                 if(message==null) return;
                 else if (message instanceof EmRequest){
                     EmRequest emRequest = (EmRequest) message;
                     Double weight = emRequest.getWeight();
                     Double PM = Math.pow(weight,0.75);
                     this.EM = NEm * PM;
-                    
-                    
+
                 }
                 else if (message instanceof EmResponse){
                     this.user.send(new Result (this.EM));

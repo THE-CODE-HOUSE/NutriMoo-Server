@@ -58,28 +58,27 @@ public class Client{
 
   disconnectionMessageHandler.start();
   
-  double option = 0;
+  double peso = 0;
 
   do{
 
     System.out.print ("Digite o peso do gado:  ");
 
-    
     try {
-      option = Teclado.getUmDouble();
+      peso = Teclado.getUmDouble();
     } catch (Exception e) {
       System.err.println("Opção invalida\n");
       continue;
     }
     try{
-      server.send(new EmRequest(option));
+      server.send(new EmRequest(peso));
     }catch(Exception e){
       System.err.println ("Erro de comunicacao com o servidor;");
 			System.err.println ("Tente novamente!");
 			System.err.println ("Caso o erro persista, termine o programa");
 			System.err.println ("e volte a tentar mais tarde!\n");    
     }
-    if(option ==-1) break;
+    if(peso ==-1) break;
     try{
 
       server.send(new EmResponse());
@@ -100,7 +99,7 @@ public class Client{
 			System.err.println ("e volte a tentar mais tarde!\n");    
     }
 
-  }while (option != -1);
+  }while (peso != -1);
   try{
 		server.send (new ExitRequest ());
 	}catch (Exception e){}
