@@ -1,6 +1,6 @@
-// package main.java.com.thecodehouse.nutrimoo.Client;
+package message;
 
-public class EmRequest extends Message{
+public class EmRequest extends Message {
     private double weight;
 
     public EmRequest(double value){

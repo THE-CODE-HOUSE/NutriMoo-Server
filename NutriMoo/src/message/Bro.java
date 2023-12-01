@@ -1,4 +1,4 @@
-// package main.java.com.thecodehouse.nutrimoo.Server;
+package message;
 
 import java.io.*;
 import java.net.*;

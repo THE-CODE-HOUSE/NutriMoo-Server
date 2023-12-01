@@ -1,4 +1,4 @@
-// package main.java.com.thecodehouse.nutrimoo.Server;
+package message;// package main.java.com.thecodehouse.nutrimoo.Server;
 
 import java.util.*;
 

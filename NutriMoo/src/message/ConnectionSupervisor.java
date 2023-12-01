@@ -1,4 +1,4 @@
-// package main.java.com.thecodehouse.nutrimoo.Server;
+package message;// package main.java.com.thecodehouse.nutrimoo.Server;
 
 import java.io.*;
 import java.net.*;
@@ -64,7 +64,7 @@ public class ConnectionSupervisor extends Thread{
 
                 }
                 else if (message instanceof EmResponse){
-                    this.user.send(new Result (this.EM));
+                    this.user.send(new Result(this.EM));
                 }
                 else if (message instanceof RequestToLeave){
                     synchronized(this.users){
