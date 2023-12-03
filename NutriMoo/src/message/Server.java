@@ -20,6 +20,7 @@ public class Server {
         new ArrayList<Bro> ();
 
         ConnectionAcceptor connectionAcceptor=null;
+        // Aqui ele tenta Iniciar a thread que irá aceitar as conexões dos usuarios
         try{
             connectionAcceptor = new ConnectionAcceptor(port, users);
             connectionAcceptor.start();

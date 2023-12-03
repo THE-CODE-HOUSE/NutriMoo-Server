@@ -31,6 +31,7 @@ public class ConnectionAcceptor extends Thread{
             }
 
             ConnectionSupervisor connectionSupervisor=null;
+            // Aqui ele tenta iniciar a thread que irá supervisionar as solicitações do usuário
             try{
                 connectionSupervisor = new ConnectionSupervisor(connection, users);
             }catch(Exception error){}

@@ -50,11 +50,13 @@ public class ConnectionSupervisor extends Thread{
 
             for(;;){
                 Message message = null;
+                // Aqui ele tenta receber a message que o client enviou
                 try{
                     message = this.user.receive();
                 }catch(Exception e){}
                 Double NEm = 0.120;
-                
+                // Aqui ele irá verificar qual Message o client enviou
+                // para saber oque ele faz!
                 if(message==null) return;
                 else if (message instanceof EmRequest){
                     EmRequest emRequest = (EmRequest) message;
@@ -79,7 +81,7 @@ public class ConnectionSupervisor extends Thread{
                 receptor.close ();
             }
             catch (Exception falha) {} // so tentando fechar antes de acabar a thread
-            return;
+
         }
     }
 }
